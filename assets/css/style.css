@@ -34,3 +34,11 @@ h2 {
   max-width: 300px;
   max-height: 300px;
 }
+
+#pause-button {
+  position: fixed;
+  top: 50px;
+  left: 100px;
+  max-width: 50px;
+  max-height: 50px;
+}
