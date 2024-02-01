@@ -15,30 +15,52 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="column header"></div>
-      </div>
-      <div class="row">
-        <div id="search" class="column"></div>
-      </div>
-      <div class="row">
-        <div id="history" class="column"></div>
-        <div id="film-Info" class="column">
-          <div id="image"></div>
-          <div id="info"></div>
+        <div class="col-md-12 h1 text-center header border border-danger">
+          Header
         </div>
-        <div id="reviews" class="column"></div>
       </div>
       <div class="row">
-        <div id="new-articles" class="column"></div>
+        <div id="search" class="border border-danger input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search For A Movie"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+          />
+          <div class="input-group-append">
+            <button
+              id="seach-btn"
+              class="btn btn-outline-secondary"
+              type="button"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div id="history" class="col-md-4 border border-danger">History</div>
+        <div id="film-Info" class="col-md-4 border border-danger">
+          <div id="image">Image</div>
+          <div id="info">Film Info</div>
+        </div>
+        <div id="reviews" class="col-md-4 border border-danger">
+          Relevant Reviews
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div id="new-articles" class="col-md-12 border border-danger">
+          News Articles Display Search Button
+        </div>
       </div>
       <div class="row">
-        <div id="article-Display" class="column"></div>
+        <div id="article-Display" class="col-md-12 border border-danger">
+          Display News Articles Here
+        </div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
-
-
-
