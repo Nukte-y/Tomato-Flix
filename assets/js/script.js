@@ -4,7 +4,7 @@ $("#search-btn").on("click", function (event) {
   $("#film-Info").empty();
   var title = $(".form-control").val();
 
-  fetch("http://www.omdbapi.com/?t=" + title + "&plot=full&apikey=trilogy")
+  fetch("https://www.omdbapi.com/?t=" + title + "&plot=full&apikey=trilogy")
     .then(function(response) {
       return response.json();
     })
