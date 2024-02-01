@@ -10,7 +10,7 @@ $("#search-btn").on("click", function (event) {
     })
     .then(function(data) {
       console.log(data);
-      $("<img>").attr("src", data.Poster).appendTo("#film-Info");
+      $("<img>").attr("src", data.Poster).appendTo("#film-Info").addClass(".img");
       console.log(data.Poster);
       var genre = data.Genre.split(",")[0].trim(); //split returns array
       // Call the function with the genre
