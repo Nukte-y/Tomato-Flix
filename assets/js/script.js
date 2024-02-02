@@ -48,7 +48,7 @@ function displayArticle(event){       //displays article titles
     }).then(function (data) {
       for(var i=0;i<5;i++){
         var articleUrl=data.articles[i].url;
-        var articleTitle=$("<div>").append($("<a>").text(data.articles[i].title).attr({"href":articleUrl,"target":"_blank"})); 
+        var articleTitle=$("<div>").addClass('article').append($("<a>").text(data.articles[i].title).attr({"href":articleUrl,"target":"_blank"})); 
         $("#article-Display").append(articleTitle);
       }
     }
