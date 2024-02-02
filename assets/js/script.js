@@ -40,3 +40,46 @@ $("#search-btn").on("click", function (event) {
     });
   };
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  var Keys = require('./Keys.js');
+
+  const url = 'https://metacriticapi.p.rapidapi.com/movies/the-lord-of-the-rings-the-return-of-the-king?reviews=true';
+  const options = {
+    method: 'GET',
+    headers: Keys
+  };
+  
+  fetch(url, options)
+    .then(response => response.text())
+    .then(result => {
+      console.log(result);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  
