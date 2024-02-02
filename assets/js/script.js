@@ -185,3 +185,7 @@ function movieDetails(data) {
     console.error(error);
   });
 }
+
+// Add event listener to the search button
+document.getElementById('search-btn').addEventListener('click', getReviews);
+
