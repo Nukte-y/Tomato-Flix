@@ -1,4 +1,5 @@
 var title;
+var movieDetailsContainer=$("<div>").addClass("col-md-2");
 $("#search-btn").on("click", function searchMovie(event) {
   event.preventDefault(); 
   $("#search-btn").empty();       //cleaning sections
@@ -17,6 +18,7 @@ $("#search-btn").on("click", function searchMovie(event) {
       var genre = data.Genre.split(",")[0].trim(); //split returns array
       // Call the function with the genre
       playSound(genre);
+      movieDetails(data);
     });
   return title;
 });
@@ -51,3 +53,14 @@ function displayArticle(event){       //displays article titles
       }
     }
 )};
+function movieDetails(data) {
+  movieDetailsContainer.empty();
+  let movieDetails={Title: data.Title, Director: data.Director, Runtime: data.Runtime, Genre: data.Genre, imdbRating: data.imdbRating};
+  $("#content").children().eq(1).after(movieDetailsContainer); 
+    for(let key in movieDetails) {
+      // $("<h3>").text(`${key}: ${movieDetails[key]}`).appendTo(movieDetailsContainer).addClass("?");
+      var h3 = $("<h3>").appendTo(movieDetailsContainer);
+      $("<span>").text(`${key}: `).addClass("key").appendTo(h3);
+      $("<span>").text(movieDetails[key]).addClass("value").appendTo(h3);
+    }  
+  } 
