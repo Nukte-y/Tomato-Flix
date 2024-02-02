@@ -66,20 +66,24 @@ $("#search-btn").on("click", function (event) {
 
 
 
-  var Keys = require('./Keys.js');
-
-  const url = 'https://metacriticapi.p.rapidapi.com/movies/the-lord-of-the-rings-the-return-of-the-king?reviews=true';
-  const options = {
-    method: 'GET',
-    headers: Keys
-  };
+  var Keys = require('./Keys.js'); //references the api keys in the gitignore
+  function getReviews() {
+    var movieName = document.getElementsByClassName('form-control')[0].value; //user input
+    var url =  `https://metacriticapi.p.rapidapi.com/movies/${movieName}?reviews=true`;
+    const options = {
+      method: 'GET',
+      headers: Keys
+    };
+    
+    fetch(url, options)
+      .then(response => response.json())
+      .then(result => {
+        var reviewsDiv = document.getElementById('reviews')
+        reviewsDiv.innerHTML = '';
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
   
-  fetch(url, options)
-    .then(response => response.text())
-    .then(result => {
-      console.log(result);
-    })
-    .catch(error => {
-      console.error(error);
-    });
   
