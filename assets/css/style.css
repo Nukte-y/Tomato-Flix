@@ -78,3 +78,13 @@ a:hover {
   background: #d8e6d0;
 }
 
+.btn {
+  font-size: 3em;
+  
+}
+
+
+
+::-webkit-input-placeholder {
+  font-size: 50px!important;
+}
