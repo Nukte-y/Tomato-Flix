@@ -1,12 +1,12 @@
 var title;
 var movieDetailsContainer=$("<div>").addClass("col-md-2");
-$("#search-btn").on("click", function searchMovie(event) {
+$(".tomato").on("click", function searchMovie(event) {
   event.preventDefault(); 
   $("#search-btn").empty();       //cleaning sections
   $("#film-Info").empty();
   $("#article-Display").empty();
   title = $(".form-control").val();
-
+  $(this).attr("src","./assets/img/Squashed_Tomato.png")  //change tomato image when click
   fetch("https://www.omdbapi.com/?t=" + title + "&plot=full&apikey=trilogy")
     .then(function(response) {
       return response.json();
