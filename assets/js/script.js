@@ -64,3 +64,108 @@ function movieDetails(data) {
       $("<span>").text(movieDetails[key]).addClass("value").appendTo(h3);
     }  
   } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  var apikey=Keys.Key;
+  var apiHost=Keys.Host;
+  
+  function getReviews() {
+    var movieName = document.getElementsByClassName('form-control')[0].value; //user input
+    var url =  `https://metacriticapi.p.rapidapi.com/movies/${movieName}?reviews=true`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': apikey,
+        'X-RapidAPI-Host': apiHost
+      }
+    };
+    
+    fetch(url, options)
+    .then(response => response.json())
+    .then(result => {
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
