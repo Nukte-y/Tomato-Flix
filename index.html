@@ -14,20 +14,28 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
+    <div class="splash">
+      <h1 class="fade-in fadeText">Welcome To Tomato-Flix</h1>
+      <img class="fade-in gif" src="./assets/img/TomatoFace.gif" alt="" />
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-md-12 h1 pt-2 text-center header">
-          <img id="pause-button" class="button" src="./assets/img/sound_on.png" alt="" />
+          <img
+            id="pause-button"
+            class="button display-none"
+            src="./assets/img/sound_on.png"
+            alt=""
+          />
 
           <h1>Tomato Flix</h1>
-          <!-- <img src="./assets/img/tomatoface.gif" alt="" /> -->
         </div>
       </div>
       <div class="row">
-        <div id="search" class="input-group input-group-lg">
+        <div id="search" class="col-lg-6 offset-md-3">
           <input
             type="text"
-            class="form-control pt-5 pb-4 fw-bold"
+            class="form-control pt-3 pb-3 fw-bold"
             placeholder="Search For A Movie"
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
@@ -42,38 +50,39 @@
           alt="innocent tomato ready for inevitability"
         />
       </div>
-      <div  id="content" class="row mb-2">
-        <div id="history" class="col-lg-2 border border-danger">
+      <div id="content" class="row mb-2">
+        <div id="history" class="display-none col-lg-2 border border-danger">
           <h2>History</h2>
         </div>
-        <div id="film-Info" class="col-lg-4 text-center border-danger">
-          <img
+        <div id="film-Info" class="col-md-3 text-center border-danger">
+          <!-- <img
             src="./assets/img/template_img.png"
             class="img-placeholder col-lg-3"
             alt=""
-          />
+          /> -->
         </div>
-        <div id="reviews" class="col-lg-4 border border-danger">
+        <div id="reviews" class="col-lg-4 border border-danger display-none">
           <h2>Relevant Reviews</h2>
         </div>
       </div>
       <div class="row mb-2">
-        <div
-          id="new-articles"
-          class="col-md-12 text-center"
-        >
-          <button id="news-btn" class="btn btn-lg mt-5 btn-outline-danger" type="button">
+        <div id="new-articles" class="col-md-12 text-center display-none">
+          <button
+            id="news-btn"
+            class="btn btn-lg mt-5 btn-outline-danger"
+            type="button"
+          >
             Display Relevant News Articles
           </button>
         </div>
       </div>
       <div class="row">
-        <div id="article-Display" class="col-md-12">
-        </div>
+        <div id="article-Display" class="col-md-12"></div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="Keys.js"></script>
+    <script src="./assets/js/fadein.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
