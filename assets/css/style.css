@@ -69,9 +69,14 @@ h1 {
   font-family: var(--secondheadingfont);
   font-weight: var(--headingweight);
   font-style: var(--headingstyle);
-  font-size: 4em;
+  font-size: 2em;
 }
 
+@media (min-width: 480px) {
+  h1 {
+    font-size: 4em;
+  }
+}
 h2 {
   font-family: var(--smallerheadings);
   font-weight: var(--smallerheadingsweight);
@@ -130,7 +135,5 @@ a:hover {
 }
 
 ::-webkit-input-placeholder {
-
   font-size: 50px !important;
 }
-
