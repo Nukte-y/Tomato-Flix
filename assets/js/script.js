@@ -70,7 +70,8 @@ function displayArticle(event) {
 }
 function movieDetails(data) {
   movieDetailsContainer.empty();
-  let movieDetails = {
+
+let movieDetails = {
     Title: data.Title,
     Director: data.Director,
     Runtime: data.Runtime,
@@ -85,3 +86,131 @@ function movieDetails(data) {
     $("<span>").text(movieDetails[key]).addClass("value").appendTo(h3);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  var apikey=Keys.Key;// references the keys in the api keys in the keys.js file
+  var apiHost=Keys.Host;
+  
+  function getReviews() {
+    var movieName = document.getElementsByClassName('form-control')[0].value; //captures user input data
+    var url =  `https://metacriticapi.p.rapidapi.com/movies/${movieName}?reviews=true`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': apikey,
+        'X-RapidAPI-Host': apiHost
+      }
+    };
+    
+    fetch(url, options)
+    .then(response => response.json())
+    .then(result => {
+      var reviewsDiv = document.getElementById('reviews')
+      reviewsDiv.innerHTML = '';
+
+      if (result.recentReviews) {
+        result.recentReviews.forEach(review => {
+          var reviewerName = document.createElement('h3');
+          reviewerName.textContent = review.name;
+          reviewsDiv.appendChild(reviewerName);
+
+          var reviewBody = document.createElement('p');
+          reviewBody.textContent = review.body;
+          reviewsDiv.appendChild(reviewBody);
+        });
+      } else {
+        reviewsDiv.textContent = "No reviews found.";
+      }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+// Add event listener to the search button
+document.getElementById('search-btn').addEventListener('click', getReviews);
+
+
+ 
+

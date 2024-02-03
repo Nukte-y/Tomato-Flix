@@ -130,5 +130,7 @@ a:hover {
 }
 
 ::-webkit-input-placeholder {
+
   font-size: 50px !important;
 }
+
