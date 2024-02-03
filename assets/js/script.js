@@ -1,19 +1,25 @@
 var title;
-var movieDetailsContainer=$("<div>").addClass("col-md-2");
+var movieDetailsContainer = $("<div>").addClass("col-md-2");
 $(".tomato").on("click", function searchMovie(event) {
-  event.preventDefault(); 
-  $("#search-btn").empty();       //cleaning sections
+  event.preventDefault();
+  $("#search-btn").empty(); //cleaning sections
   $("#film-Info").empty();
   $("#article-Display").empty();
+  $("#pause-button, #history, #reviews, #new-articles").each(function () {
+    $(this).removeClass("display-none");
+  });
   title = $(".form-control").val();
-  $(this).attr("src","./assets/img/Squashed_Tomato.png")  //change tomato image when click
+  $(this).attr("src", "./assets/img/Squashed_Tomato.png"); //change tomato image when click
   fetch("https://www.omdbapi.com/?t=" + title + "&plot=full&apikey=trilogy")
-    .then(function(response) {
+    .then(function (response) {
       return response.json();
     })
-    .then(function(data) {
+    .then(function (data) {
       console.log(data);
-      $("<img>").attr("src", data.Poster).appendTo("#film-Info").addClass("img col-md-3");
+      $("<img>")
+        .attr("src", data.Poster)
+        .appendTo("#film-Info")
+        .addClass("img col-md-3");
       console.log(data.Poster);
       var genre = data.Genre.split(",")[0].trim(); //split returns array
       // Call the function with the genre
@@ -23,44 +29,59 @@ $(".tomato").on("click", function searchMovie(event) {
   return title;
 });
 
-function playSound(theme) {               //plays music that matches the genre
+function playSound(theme) {
+  //plays music that matches the genre
   var movieSound = $("<audio>").appendTo("#search");
   movieSound.attr("src", `./assets/musics/${theme}.mp3`);
   movieSound.get(0).play();
-  $("#pause-button").on("click", function() {
+  $("#pause-button").on("click", function () {
     movieSound.get(0).pause();
   });
-};
-  
-$("#news-btn").on("click",displayArticle)
+}
+
+$("#news-btn").on("click", displayArticle);
 
 var apiURL = "https://gnews.io/api/v4/search?";
 var key = "&country=us&max=10&token=d06b56befd778f95afde57c26ebc9890";
-searchString = title +" movie";
+searchString = title + " movie";
 articleURL = apiURL + "q=" + searchString + key;
 
-function displayArticle(event){       //displays article titles
+function displayArticle(event) {
+  //displays article titles
   event.preventDefault();
   $("#article-Display").empty();
   fetch(articleURL)
     .then(function (response) {
-    return response.json();
-    }).then(function (data) {
-      for(var i=0;i<5;i++){
-        var articleUrl=data.articles[i].url;
-        var articleTitle=$("<div>").addClass('article').append($("<a>").text(data.articles[i].title).attr({"href":articleUrl,"target":"_blank"})); 
+      return response.json();
+    })
+    .then(function (data) {
+      for (var i = 0; i < 5; i++) {
+        var articleUrl = data.articles[i].url;
+        var articleTitle = $("<div>")
+          .addClass("article")
+          .append(
+            $("<a>")
+              .text(data.articles[i].title)
+              .attr({ href: articleUrl, target: "_blank" })
+          );
         $("#article-Display").append(articleTitle);
       }
-    }
-)};
+    });
+}
 function movieDetails(data) {
   movieDetailsContainer.empty();
-  let movieDetails={Title: data.Title, Director: data.Director, Runtime: data.Runtime, Genre: data.Genre, imdbRating: data.imdbRating};
-  $("#content").children().eq(1).after(movieDetailsContainer); 
-    for(let key in movieDetails) {
-      // $("<h3>").text(`${key}: ${movieDetails[key]}`).appendTo(movieDetailsContainer).addClass("?");
-      var h3 = $("<h3>").appendTo(movieDetailsContainer);
-      $("<span>").text(`${key}: `).addClass("key").appendTo(h3);
-      $("<span>").text(movieDetails[key]).addClass("value").appendTo(h3);
-    }  
-  } 
+  let movieDetails = {
+    Title: data.Title,
+    Director: data.Director,
+    Runtime: data.Runtime,
+    Genre: data.Genre,
+    imdbRating: data.imdbRating,
+  };
+  $("#content").children().eq(1).after(movieDetailsContainer);
+  for (let key in movieDetails) {
+    // $("<h3>").text(`${key}: ${movieDetails[key]}`).appendTo(movieDetailsContainer).addClass("?");
+    var h3 = $("<h3>").appendTo(movieDetailsContainer);
+    $("<span>").text(`${key}: `).addClass("key").appendTo(h3);
+    $("<span>").text(movieDetails[key]).addClass("value").appendTo(h3);
+  }
+}
