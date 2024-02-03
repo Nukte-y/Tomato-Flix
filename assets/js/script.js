@@ -10,6 +10,14 @@ $(".tomato").on("click", function searchMovie(event) {
   });
   title = $(".form-control").val();
   $(this).attr("src", "./assets/img/Squashed_Tomato.png"); //change tomato image when click
+
+  // Hi Guys, I added a timeout to this so that the image changes back to the original tomato after 3 seconds
+  var self = this;
+  setTimeout(function () {
+    $(self).attr("src", "./assets/img/Tomato_Squish_Time.png");
+  }, 3000);
+  // End of my function
+
   fetch("https://www.omdbapi.com/?t=" + title + "&plot=full&apikey=trilogy")
     .then(function (response) {
       return response.json();
@@ -71,7 +79,7 @@ function displayArticle(event) {
 function movieDetails(data) {
   movieDetailsContainer.empty();
 
-let movieDetails = {
+  let movieDetails = {
     Title: data.Title,
     Director: data.Director,
     Runtime: data.Runtime,
@@ -87,130 +95,44 @@ let movieDetails = {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  var apikey=Keys.Key;// references the keys in the api keys in the keys.js file
-  var apiHost=Keys.Host;
-  
-  function getReviews() {
-    var movieName = document.getElementsByClassName('form-control')[0].value; //captures user input data
-    var url =  `https://metacriticapi.p.rapidapi.com/movies/${movieName}?reviews=true`;
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': apikey,
-        'X-RapidAPI-Host': apiHost
-      }
-    };
-    
-    fetch(url, options)
-    .then(response => response.json())
-    .then(result => {
-      var reviewsDiv = document.getElementById('reviews')
-      reviewsDiv.innerHTML = '';
+var apikey = Keys.Key; // references the keys in the api keys in the keys.js file
+var apiHost = Keys.Host;
+
+function getReviews() {
+  var movieName = document.getElementsByClassName("form-control")[0].value; //captures user input data
+  var url = `https://metacriticapi.p.rapidapi.com/movies/${movieName}?reviews=true`;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": apikey,
+      "X-RapidAPI-Host": apiHost,
+    },
+  };
+
+  fetch(url, options)
+    .then((response) => response.json())
+    .then((result) => {
+      var reviewsDiv = document.getElementById("reviews");
+      reviewsDiv.innerHTML = "";
 
       if (result.recentReviews) {
-        result.recentReviews.forEach(review => {
-          var reviewerName = document.createElement('h3');
+        result.recentReviews.forEach((review) => {
+          var reviewerName = document.createElement("h3");
           reviewerName.textContent = review.name;
           reviewsDiv.appendChild(reviewerName);
 
-          var reviewBody = document.createElement('p');
+          var reviewBody = document.createElement("p");
           reviewBody.textContent = review.body;
           reviewsDiv.appendChild(reviewBody);
         });
       } else {
         reviewsDiv.textContent = "No reviews found.";
       }
-  })
-  .catch(error => {
-    console.error(error);
-  });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 // Add event listener to the search button
-document.getElementById('search-btn').addEventListener('click', getReviews);
-
-
- 
-
+document.getElementById("search-btn").addEventListener("click", getReviews);
