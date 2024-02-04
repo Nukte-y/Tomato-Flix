@@ -1,5 +1,5 @@
 var title;
-var movieDetailsContainer = $("<div>").addClass("col-md-2");
+var movieDetailsContainer = $("<div>").addClass("col-md-3");
 $(".tomato").on("click", function searchMovie(event) {
   event.preventDefault();
   $("#search-btn").empty(); //cleaning sections
@@ -51,8 +51,8 @@ $("#news-btn").on("click", displayArticle);
 
 var apiURL = "https://gnews.io/api/v4/search?";
 var key = "&country=us&max=10&token=d06b56befd778f95afde57c26ebc9890";
-searchString = title + " movie";
-articleURL = apiURL + "q=" + searchString + key;
+var searchString = title + " movie";
+var articleURL = apiURL + "q=" + searchString + key;
 
 function displayArticle(event) {
   //displays article titles
