@@ -43,8 +43,19 @@ function playSound(theme) {
   movieSound.attr("src", `./assets/musics/${theme}.mp3`);
   movieSound.get(0).play();
   $("#pause-button").on("click", function () {
-    movieSound.get(0).pause();
+    soundControl(movieSound);
   });
+}
+function soundControl(movieSound){
+  let soundImage=$("#pause-button").attr("src");
+  if(soundImage==="./assets/img/sound_off.png"){
+    $("#pause-button").attr("src","./assets/img/sound_on.png");
+    movieSound.get(0).play();
+  }
+  else{
+    movieSound.get(0).pause();
+    $("#pause-button").attr("src","./assets/img/sound_off.png")
+  }
 }
 
 $("#news-btn").on("click", displayArticle);
