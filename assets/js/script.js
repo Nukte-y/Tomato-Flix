@@ -133,7 +133,20 @@ var apiHost = Keys.Host;
 
 function getReviews() {
   var movieName = document.getElementsByClassName("form-control")[0].value; //captures user input data
-  localStorage.setItem('movieName', movieName); // store the movie name in local storage
+
+  // Get the existing movies from local storage
+  var movies = JSON.parse(localStorage.getItem('movies')) || [];
+  
+  // Add the new movie to the beginning of the array
+  movies.unshift(movieName);
+  
+  // If there are more than 5 movies, remove the last one
+  if (movies.length > 5) {
+    movies.pop();
+  }
+  
+  // Store the updated movies array in local storage
+  localStorage.setItem('movies', JSON.stringify(movies));
   var url = `https://movie-database-imdb.p.rapidapi.com/movie/?name=${movieName}`;
   const options = {
     method: "GET",
@@ -156,7 +169,7 @@ function getReviews() {
           reviewerName.textContent = reviewSpace.author;
           reviewsDiv.appendChild(reviewerName);
 
-          var heading = document.createElement("h4");
+          var heading = document.createElement("h5");
           heading.textContent = reviewSpace.heading;
           reviewsDiv.appendChild(heading);
 
