@@ -180,3 +180,16 @@ a:hover {
 .ratingKey {
   font-size: 28px;
 }
+
+#detail_sub_ratings {
+  border: 1px solid black;
+  border-top: 2px dashed red;
+  border-bottom: 2px dotted green;
+  border-left: solid red; 
+  border-right: solid green;
+  padding: 10px; 
+}
+
+.ratingsTitle {
+  font-size: 100;
+}
