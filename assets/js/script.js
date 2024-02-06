@@ -133,6 +133,7 @@ var apiHost = Keys.Host;
 
 function getReviews() {
   var movieName = document.getElementsByClassName("form-control")[0].value; //captures user input data
+  localStorage.setItem('movieName', movieName); // store the movie name in local storage
   var url = `https://movie-database-imdb.p.rapidapi.com/movie/?name=${movieName}`;
   const options = {
     method: "GET",
