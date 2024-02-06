@@ -145,6 +145,11 @@ a:hover {
   font-size: 3em;
 }
 
+.form-control{          /*to style placeholder*/
+  font-size: 38px;
+  font-weight: bolder; 
+ }
+
 @media (min-width: 480px) {
   h1 {
     font-size: 4em;
