@@ -184,6 +184,7 @@ window.onload = function() {
     var movieNameDiv = document.getElementById("history");
     movieNameDiv.textContent = movieName;
 
-    
+    // Add event listener to the movie name div
+    movieNameDiv.addEventListener("click", getReviews);
   }
 };
