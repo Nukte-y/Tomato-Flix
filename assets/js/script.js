@@ -118,9 +118,9 @@ function movieDetails(data) {
       
       for (let key in rating) {
         if(!isNaN(parseFloat(rating[key]))){
-          $("<span>").text(`${rating[key]} `).appendTo(ratingEl).addClass("value")}
+          $("<span>").text(`${rating[key]} `).appendTo(ratingEl).addClass("value ratingValue")}
         else{
-          $("<span>").text(`${rating[key]} `).appendTo(ratingEl).addClass("key")
+          $("<span>").text(`${rating[key]} `).appendTo(ratingEl).addClass("key ratingKey")
           } 
         }
       }

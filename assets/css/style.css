@@ -172,3 +172,11 @@ a:hover {
     max-height: 50px;
   }
 }
+
+.ratingValue {
+  font-size: 18px
+}
+
+.ratingKey {
+  font-size: 28px;
+}
