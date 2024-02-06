@@ -133,7 +133,7 @@ var apiHost = Keys.Host;
 
 function getReviews() {
   var movieName = document.getElementsByClassName("form-control")[0].value; //captures user input data
-  var url = `https://metacriticapi.p.rapidapi.com/movies/${movieName}?reviews=true`;
+  var url = `https://movie-database-imdb.p.rapidapi.com/movie/?name=${movieName}`;
   const options = {
     method: "GET",
     headers: {
@@ -145,19 +145,24 @@ function getReviews() {
   fetch(url, options)
     .then((response) => response.json())
     .then((result) => {
+      var reviewSpace=result.review;
       var reviewsDiv = document.getElementById("reviews");
       reviewsDiv.innerHTML = "";
 
-      if (result.recentReviews) {
-        result.recentReviews.forEach((review) => {
+      if (reviewSpace) {
+       
           var reviewerName = document.createElement("h3");
-          reviewerName.textContent = review.name;
+          reviewerName.textContent = reviewSpace.author;
           reviewsDiv.appendChild(reviewerName);
 
+          var heading = document.createElement("h4");
+          heading.textContent = reviewSpace.heading;
+          reviewsDiv.appendChild(heading);
+
           var reviewBody = document.createElement("p");
-          reviewBody.textContent = review.body;
+          reviewBody.textContent = reviewSpace.reviewBody;
           reviewsDiv.appendChild(reviewBody);
-        });
+       
       } else {
         reviewsDiv.textContent = "No reviews found.";
       }
