@@ -189,15 +189,21 @@ function getReviews() {
 // Add event listener to the search button
 document.getElementById("search-btn").addEventListener("click", getReviews);
 
-
-// Display the movie name from local storage when the page loads
+// Display the movie names from local storage when the page loads
 window.onload = function() {
-  var movieName = localStorage.getItem('movieName'); // get the movie name from local storage
-  if (movieName) {
-    var movieNameDiv = document.getElementById("history");
+  var movies = JSON.parse(localStorage.getItem('movies')) || []; // get the movies from local storage
+  var movieListDiv = document.getElementById("movie-list");
+  movieListDiv.innerHTML = "";
+
+  movies.forEach(function(movieName) {
+    var movieNameDiv = document.createElement("div");
     movieNameDiv.textContent = movieName;
+    movieListDiv.appendChild(movieNameDiv);
 
     // Add event listener to the movie name div
-    movieNameDiv.addEventListener("click", getReviews);
-  }
+    movieNameDiv.addEventListener("click", function() {
+      document.getElementsByClassName("form-control")[0].value = movieName; // set the input value to the clicked movie name
+      getReviews(); // fetch the reviews for the clicked movie
+    });
+  });
 };
