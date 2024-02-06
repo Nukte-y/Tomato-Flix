@@ -95,14 +95,36 @@ function movieDetails(data) {
     Director: data.Director,
     Runtime: data.Runtime,
     Genre: data.Genre,
-    imdbRating: data.imdbRating,
+    Actors: data.Actors,
+    Awards: data.Awards,
+    Ratings:""
   };
+
   $("#content").children().eq(1).after(movieDetailsContainer);
   for (let key in movieDetails) {
     // $("<h3>").text(`${key}: ${movieDetails[key]}`).appendTo(movieDetailsContainer).addClass("?");
     var h3 = $("<h3>").appendTo(movieDetailsContainer);
     $("<span>").text(`${key}: `).addClass("key").appendTo(h3);
     $("<span>").text(movieDetails[key]).addClass("value").appendTo(h3);
+  }
+  ratings(data);
+  
+  function ratings(data) {
+    let allRatingsDiv = $("<div>").appendTo(movieDetailsContainer).attr("id","detail_sub_ratings")
+    var ratings=data.Ratings;
+    
+    ratings.forEach(rating => {
+      let ratingEl= $("<div>").appendTo(allRatingsDiv).addClass("rating")
+      
+      for (let key in rating) {
+        if(!isNaN(parseFloat(rating[key]))){
+          $("<span>").text(`${rating[key]} `).appendTo(ratingEl).addClass("value")}
+        else{
+          $("<span>").text(`${rating[key]} `).appendTo(ratingEl).addClass("key")
+          } 
+        }
+      }
+    )
   }
 }
 
