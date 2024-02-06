@@ -175,3 +175,15 @@ function getReviews() {
 
 // Add event listener to the search button
 document.getElementById("search-btn").addEventListener("click", getReviews);
+
+
+// Display the movie name from local storage when the page loads
+window.onload = function() {
+  var movieName = localStorage.getItem('movieName'); // get the movie name from local storage
+  if (movieName) {
+    var movieNameDiv = document.getElementById("history");
+    movieNameDiv.textContent = movieName;
+
+    
+  }
+};
