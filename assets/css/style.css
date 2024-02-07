@@ -197,3 +197,8 @@ a:hover {
 .ratingsTitle {
   font-size: 100px;
 }
+#reviews{ 
+  height: 416px; 
+  border: 1px solid black;
+  overflow: auto;
+};
