@@ -148,8 +148,6 @@ function getReviews() {
     movies.pop();
   }
   
-  // // Store the updated movies array in local storage
-  localStorage.setItem('movies', JSON.stringify(movies));
 
   // Store the updated movies array in local storage
   localStorage.setItem('movies', JSON.stringify(movies));
