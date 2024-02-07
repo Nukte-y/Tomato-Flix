@@ -133,20 +133,24 @@ var apiHost = Keys.Host;
 
 function getReviews() {
   var movieName = document.getElementsByClassName("form-control")[0].value; //captures user input data
-
-  // Get the existing movies from local storage
-  var movies = JSON.parse(localStorage.getItem('movies')) || [];
+  console.log(movieName);
   
-  // Add the new movie to the beginning of the array
+
+  // // Get the existing movies from local storage
+  var movies = JSON.parse(localStorage.getItem('movies')) || [];
+  console.log(movies);
+  // // Add the new movie to the beginning of the array
   movies.unshift(movieName);
   
-  // If there are more than 5 movies, remove the last one
+  
+  // // If there are more than 5 movies, remove the last one
   if (movies.length > 5) {
     movies.pop();
   }
   
-  // Store the updated movies array in local storage
+  // // Store the updated movies array in local storage
   localStorage.setItem('movies', JSON.stringify(movies));
+  
   var url = `https://movie-database-imdb.p.rapidapi.com/movie/?name=${movieName}`;
   const options = {
     method: "GET",
@@ -186,15 +190,17 @@ function getReviews() {
     });
 }
 
+
 // Add event listener to the search button
 document.getElementById("search-btn").addEventListener("click", getReviews);
 
 // Display the movie names from local storage when the page loads
 window.onload = function() {
   var movies = JSON.parse(localStorage.getItem('movies')) || []; // get the movies from local storage
-  var movieListDiv = document.getElementById("movie-list");
+  console.log(movies);
+  var movieListDiv = document.getElementById("history");
   movieListDiv.innerHTML = "";
-
+  
   movies.forEach(function(movieName) {
     var movieNameDiv = document.createElement("div");
     movieNameDiv.textContent = movieName;
