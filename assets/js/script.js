@@ -133,6 +133,60 @@ var apiHost = Keys.Host;
 
 function getReviews() {
   var movieName = document.getElementsByClassName("form-control")[0].value; //captures user input data
+  console.log(movieName);
+  
+
+  // // Get the existing movies from local storage
+  var movies = JSON.parse(localStorage.getItem('movies')) || [];
+  console.log(movies);
+  // // Add the new movie to the beginning of the array
+  movies.unshift(movieName);
+  
+  
+  // // If there are more than 5 movies, remove the last one
+  if (movies.length > 5) {
+    movies.pop();
+  }
+  
+
+  // Store the updated movies array in local storage
+  localStorage.setItem('movies', JSON.stringify(movies));
+
+  // Update the movie list in the HTML
+  var movieListDiv = document.getElementById("history");
+  movieListDiv.innerHTML = "";
+  
+  movies.forEach(function(movieName) {
+    var movieNameDiv = document.createElement("div");
+    movieNameDiv.textContent = movieName;
+    movieListDiv.appendChild(movieNameDiv);
+
+    // Add event listener to the movie name div
+    movieNameDiv.addEventListener("click", function() {
+      document.getElementsByClassName("form-control")[0].value = movieName; // set the input value to the clicked movie name
+
+      // Fetch movie details
+      fetch("https://www.omdbapi.com/?t=" + movieName + "&plot=full&apikey=trilogy")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          $("#film-Info").empty(); //clean sections
+          $("<img>")
+            .attr("src", data.Poster)
+            .appendTo("#film-Info")
+            .addClass("img col-md-3");
+          console.log(data.Poster);
+          var genre = data.Genre.split(",")[0].trim(); //split returns array
+          // Call the function with the genre
+          playSound(genre);
+          movieDetails(data);
+        });
+      getReviews(); // fetch the reviews for the clicked movie
+    });
+  });
+  
   var url = `https://movie-database-imdb.p.rapidapi.com/movie/?name=${movieName}`;
   const options = {
     method: "GET",
@@ -155,7 +209,7 @@ function getReviews() {
           reviewerName.textContent = reviewSpace.author;
           reviewsDiv.appendChild(reviewerName);
 
-          var heading = document.createElement("h4");
+          var heading = document.createElement("h5");
           heading.textContent = reviewSpace.heading;
           reviewsDiv.appendChild(heading);
 
@@ -172,5 +226,8 @@ function getReviews() {
     });
 }
 
+
 // Add event listener to the search button
 document.getElementById("search-btn").addEventListener("click", getReviews);
+
+
