@@ -209,6 +209,26 @@ window.onload = function() {
     // Add event listener to the movie name div
     movieNameDiv.addEventListener("click", function() {
       document.getElementsByClassName("form-control")[0].value = movieName; // set the input value to the clicked movie name
+
+      // Fetch movie details
+      fetch("https://www.omdbapi.com/?t=" + movieName + "&plot=full&apikey=trilogy")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          $("#film-Info").empty(); //clean sections
+          $("<img>")
+            .attr("src", data.Poster)
+            .appendTo("#film-Info")
+            .addClass("img col-md-3");
+          console.log(data.Poster);
+          var genre = data.Genre.split(",")[0].trim(); //split returns array
+          // Call the function with the genre
+          playSound(genre);
+          movieDetails(data);
+        });
+
       getReviews(); // fetch the reviews for the clicked movie
     });
   });
