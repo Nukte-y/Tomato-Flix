@@ -127,6 +127,16 @@ h3 {
   max-height: 30px;
 }
 
+button {
+  background-color: rgb(37, 4, 13);
+  border-style: groove;
+  min-width: 150px;
+  border-radius: 20px;
+  padding: 5px;
+  color: #d8e6d0;
+  margin: 10px;
+}
+
 /* Articles */
 
 a {

@@ -168,7 +168,7 @@ function getReviews() {
   movieListDiv.innerHTML = "";
 
   movies.forEach(function (movieName) {
-    var movieNameDiv = document.createElement("div");
+    var movieNameDiv = document.createElement("button");
     movieNameDiv.textContent = movieName;
     movieListDiv.appendChild(movieNameDiv);
 
