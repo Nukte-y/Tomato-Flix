@@ -128,12 +128,17 @@ function movieDetails(data) {
   }
 }
 
-var apikey = Keys.Key; // references the keys in the api keys in the keys.js file
+var apikey = Keys.Key; // references the keys in the keys.js file
 var apiHost = Keys.Host;
 
 function getReviews() {
   var movieName = document.getElementsByClassName("form-control")[0].value; //captures user input data
   console.log(movieName);
+// Error msg if no movie has been entered 
+  if (!movieName) {
+    alert("Please enter a movie name.");
+    return;
+  }
   
 
   // // Get the existing movies from local storage
