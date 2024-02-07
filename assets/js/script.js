@@ -203,6 +203,26 @@ function getReviews() {
           movieDetails(data);
         });
       getReviews(); // fetch the reviews for the clicked movie
+
+    //Fetch and display articles 
+    var articleURL = `https://newsapi.org/v2/everything?q=${movieName}&apiKey=${apikey}`;
+      fetch(articleURL)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          $("#article-Display").empty();
+          for (var i = 0; i < 5; i++) {
+            var articleUrl = data.articles[i].url;
+            var articleTitle = $("<div>")
+              .addClass("article")
+              .append(
+                $("<a>")
+                  .text(data.articles[i].title)
+                  .attr({ href: articleUrl, target: "_blank" })
+              );
+            $("#article-Display").append(articleTitle);
+          }})
     });
   });
 
