@@ -1,5 +1,8 @@
 var title;
 var movieDetailsContainer = $("<div>").addClass("col-md-3");
+$("#pause-button").on("click", function (event) {
+  soundControl(movieSound);
+});
 $(".tomato").on("click", function searchMovie(event) {
   event.preventDefault();
   $("#search-btn").empty(); //cleaning sections
@@ -9,6 +12,7 @@ $(".tomato").on("click", function searchMovie(event) {
     $(this).removeClass("display-none");
   });
   title = $(".form-control").val();
+  $("#pause-button").attr("src","./assets/img/sound_on.png");
   $(this).attr("src", "./assets/img/Squashed_Tomato.png"); //change tomato image when click
 
   // Hi Guys, I added a timeout to this so that the image changes back to the original tomato after 3 seconds
@@ -36,16 +40,19 @@ $(".tomato").on("click", function searchMovie(event) {
     });
   return title;
 });
-
+var movieSound;
 function playSound(theme) {
   //plays music that matches the genre
-  var movieSound = $("<audio>").appendTo("#search");
+  var currentSound = $("#movie-sound");
+  if (currentSound.length === 0){
+    movieSound = $("<audio>").appendTo("#search").attr("id", "movie-sound");
+  }
+  else{
+    movieSound = currentSound;
+  }
   movieSound.attr("src", `./assets/musics/${theme}.mp3`);
   movieSound.get(0).play();
-  $("#pause-button").on("click", function () {
-    soundControl(movieSound);
-  });
-}
+} 
 function soundControl(movieSound){
   let soundImage=$("#pause-button").attr("src");
   if(soundImage==="./assets/img/sound_off.png"){
