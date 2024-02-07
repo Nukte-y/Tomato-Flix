@@ -1,5 +1,5 @@
 var title;
-var movieDetailsContainer = $("<div>").addClass("col-md-3");
+var movieDetailsContainer = $("<div>").addClass("col-md-4");
 $("#pause-button").on("click", function (event) {
   soundControl(movieSound);
 });
@@ -8,11 +8,13 @@ $(".tomato").on("click", function searchMovie(event) {
   $("#search-btn").empty(); //cleaning sections
   $("#film-Info").empty();
   $("#article-Display").empty();
-  $("#pause-button, #history, #reviews, #new-articles").each(function () {
-    $(this).removeClass("display-none");
-  });
+  $("#pause-button,#hist, #rev, #history, #reviews, #new-articles").each(
+    function () {
+      $(this).removeClass("display-none");
+    }
+  );
   title = $(".form-control").val();
-  $("#pause-button").attr("src","./assets/img/sound_on.png");
+  $("#pause-button").attr("src", "./assets/img/sound_on.png");
   $(this).attr("src", "./assets/img/Squashed_Tomato.png"); //change tomato image when click
 
   // Hi Guys, I added a timeout to this so that the image changes back to the original tomato after 3 seconds
@@ -31,7 +33,7 @@ $(".tomato").on("click", function searchMovie(event) {
       $("<img>")
         .attr("src", data.Poster)
         .appendTo("#film-Info")
-        .addClass("img col-md-3");
+        .addClass("img");
       console.log(data.Poster);
       var genre = data.Genre.split(",")[0].trim(); //split returns array
       // Call the function with the genre
@@ -44,24 +46,22 @@ var movieSound;
 function playSound(theme) {
   //plays music that matches the genre
   var currentSound = $("#movie-sound");
-  if (currentSound.length === 0){
+  if (currentSound.length === 0) {
     movieSound = $("<audio>").appendTo("#search").attr("id", "movie-sound");
-  }
-  else{
+  } else {
     movieSound = currentSound;
   }
   movieSound.attr("src", `./assets/musics/${theme}.mp3`);
   movieSound.get(0).play();
-} 
-function soundControl(movieSound){
-  let soundImage=$("#pause-button").attr("src");
-  if(soundImage==="./assets/img/sound_off.png"){
-    $("#pause-button").attr("src","./assets/img/sound_on.png");
+}
+function soundControl(movieSound) {
+  let soundImage = $("#pause-button").attr("src");
+  if (soundImage === "./assets/img/sound_off.png") {
+    $("#pause-button").attr("src", "./assets/img/sound_on.png");
     movieSound.get(0).play();
-  }
-  else{
+  } else {
     movieSound.get(0).pause();
-    $("#pause-button").attr("src","./assets/img/sound_off.png")
+    $("#pause-button").attr("src", "./assets/img/sound_off.png");
   }
 }
 
@@ -104,7 +104,7 @@ function movieDetails(data) {
     Genre: data.Genre,
     Actors: data.Actors,
     Awards: data.Awards,
-    Ratings:""
+    Ratings: "",
   };
 
   $("#content").children().eq(1).after(movieDetailsContainer);
@@ -115,23 +115,30 @@ function movieDetails(data) {
     $("<span>").text(movieDetails[key]).addClass("value").appendTo(h3);
   }
   ratings(data);
-  
+
   function ratings(data) {
-    let allRatingsDiv = $("<div>").appendTo(movieDetailsContainer).attr("id","detail_sub_ratings")
-    var ratings=data.Ratings;
-    
-    ratings.forEach(rating => {
-      let ratingEl= $("<div>").appendTo(allRatingsDiv).addClass("rating")
-      
+    let allRatingsDiv = $("<div>")
+      .appendTo(movieDetailsContainer)
+      .attr("id", "detail_sub_ratings");
+    var ratings = data.Ratings;
+
+    ratings.forEach((rating) => {
+      let ratingEl = $("<div>").appendTo(allRatingsDiv).addClass("rating");
+
       for (let key in rating) {
-        if(!isNaN(parseFloat(rating[key]))){
-          $("<span>").text(`${rating[key]} `).appendTo(ratingEl).addClass("value ratingValue")}
-        else{
-          $("<span>").text(`${rating[key]} `).appendTo(ratingEl).addClass("key ratingKey")
-          } 
+        if (!isNaN(parseFloat(rating[key]))) {
+          $("<span>")
+            .text(`${rating[key]} `)
+            .appendTo(ratingEl)
+            .addClass("value ratingValue");
+        } else {
+          $("<span>")
+            .text(`${rating[key]} `)
+            .appendTo(ratingEl)
+            .addClass("key ratingKey");
         }
       }
-    )
+    });
   }
 }
 
@@ -141,39 +148,38 @@ var apiHost = Keys.Host;
 function getReviews() {
   var movieName = document.getElementsByClassName("form-control")[0].value; //captures user input data
   console.log(movieName);
-  
 
   // // Get the existing movies from local storage
-  var movies = JSON.parse(localStorage.getItem('movies')) || [];
+  var movies = JSON.parse(localStorage.getItem("movies")) || [];
   console.log(movies);
   // // Add the new movie to the beginning of the array
   movies.unshift(movieName);
-  
-  
+
   // // If there are more than 5 movies, remove the last one
   if (movies.length > 5) {
     movies.pop();
   }
-  
 
   // Store the updated movies array in local storage
-  localStorage.setItem('movies', JSON.stringify(movies));
+  localStorage.setItem("movies", JSON.stringify(movies));
 
   // Update the movie list in the HTML
   var movieListDiv = document.getElementById("history");
   movieListDiv.innerHTML = "";
-  
-  movies.forEach(function(movieName) {
+
+  movies.forEach(function (movieName) {
     var movieNameDiv = document.createElement("div");
     movieNameDiv.textContent = movieName;
     movieListDiv.appendChild(movieNameDiv);
 
     // Add event listener to the movie name div
-    movieNameDiv.addEventListener("click", function() {
+    movieNameDiv.addEventListener("click", function () {
       document.getElementsByClassName("form-control")[0].value = movieName; // set the input value to the clicked movie name
 
       // Fetch movie details
-      fetch("https://www.omdbapi.com/?t=" + movieName + "&plot=full&apikey=trilogy")
+      fetch(
+        "https://www.omdbapi.com/?t=" + movieName + "&plot=full&apikey=trilogy"
+      )
         .then(function (response) {
           return response.json();
         })
@@ -193,7 +199,7 @@ function getReviews() {
       getReviews(); // fetch the reviews for the clicked movie
     });
   });
-  
+
   var url = `https://movie-database-imdb.p.rapidapi.com/movie/?name=${movieName}`;
   const options = {
     method: "GET",
@@ -206,24 +212,22 @@ function getReviews() {
   fetch(url, options)
     .then((response) => response.json())
     .then((result) => {
-      var reviewSpace=result.review;
+      var reviewSpace = result.review;
       var reviewsDiv = document.getElementById("reviews");
       reviewsDiv.innerHTML = "";
 
       if (reviewSpace) {
-       
-          var reviewerName = document.createElement("h3");
-          reviewerName.textContent = reviewSpace.author;
-          reviewsDiv.appendChild(reviewerName);
+        var reviewerName = document.createElement("h3");
+        reviewerName.textContent = reviewSpace.author;
+        reviewsDiv.appendChild(reviewerName);
 
-          var heading = document.createElement("h5");
-          heading.textContent = reviewSpace.heading;
-          reviewsDiv.appendChild(heading);
+        var heading = document.createElement("h5");
+        heading.textContent = reviewSpace.heading;
+        reviewsDiv.appendChild(heading);
 
-          var reviewBody = document.createElement("p");
-          reviewBody.textContent = reviewSpace.reviewBody;
-          reviewsDiv.appendChild(reviewBody);
-       
+        var reviewBody = document.createElement("p");
+        reviewBody.textContent = reviewSpace.reviewBody;
+        reviewsDiv.appendChild(reviewBody);
       } else {
         reviewsDiv.textContent = "No reviews found.";
       }
@@ -233,8 +237,5 @@ function getReviews() {
     });
 }
 
-
 // Add event listener to the search button
 document.getElementById("search-btn").addEventListener("click", getReviews);
-
-
