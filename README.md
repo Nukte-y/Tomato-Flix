@@ -25,10 +25,36 @@ The application is a live webpage so no installation is required.
 
 ## Usage
 
+To utilise this application you can visit the webpage by following this URL:
+
+https://nukte-y.github.io/Tomato-Flix/
+
+This will open up a page that looks like this:
+
+![Tomato-Flix UI](assets/img/tomato-flix-screenshot.jpeg)
+
+From here you can enter a movie title into the search field and hit the 'Squish Time' tomato button to search. The application should return data about the chosen selection. You can also hit the sound icon to play/pause the related sound on the application.
+
+Hitting the 'Display Relevant News Articles' button will display headlines from the latest  industry relevant stories from across the web. Clicking these headlines will redirect the user to that article url.
+
+The 'History' column displays your 5 latest searches, hitting these buttons takes the user back to those previous searches.
+
+
+
 ## Credits
+### Developers
+- DrWho1369
+- harrynewt0n
+- HIYASHE06
+- Nukte-y
+- Raygbrains22
+
 ### Technologies
-Bootstrap 5.3
-JQuery 3.5
+- Bootstrap 5.3
+- JQuery 3.5
+- GNews API (https://gnews.io/)
+- Rapid API (https://rapidapi.com/contactazguer/api/movie-database-imdb/)
+
 
 ## License
 
