@@ -65,18 +65,27 @@ function soundControl(movieSound) {
   }
 }
 
-$("#news-btn").on("click", displayArticle);
-
+function articleParameters() {
+var title = document.getElementsByClassName("form-control")[0].value; //captures user input data
 var apiURL = "https://gnews.io/api/v4/search?";
 var key = "&country=us&max=10&token=d06b56befd778f95afde57c26ebc9890";
 var searchString = title + " movie";
 var articleURL = apiURL + "q=" + searchString + key;
+return articleURL;
+}
+$("#news-btn").on("click", displayArticle);
+// $("#news-btn").on("click", displayArticle);
+// var title = document.getElementsByClassName("form-control")[0].value; //captures user input data
+// var apiURL = "https://gnews.io/api/v4/search?";
+// var key = "&country=us&max=10&token=d06b56befd778f95afde57c26ebc9890";
+// var searchString = title + " movie";
+// var articleURL = apiURL + "q=" + searchString + key;
 
 function displayArticle(event) {
   //displays article titles
   event.preventDefault();
   $("#article-Display").empty();
-  fetch(articleURL)
+  fetch(articleParameters())
     .then(function (response) {
       return response.json();
     })
