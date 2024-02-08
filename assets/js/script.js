@@ -83,7 +83,7 @@ function displayArticle(title) {
 
   //displays article titles
   $("#article-Display").empty();
-  fetch(articleParameters())
+  fetch(articleURL)
     .then(function (response) {
       return response.json();
     })
@@ -101,6 +101,7 @@ function displayArticle(title) {
       }
     });
 }
+
 
 function movieDetails(data) {
   movieDetailsContainer.empty();
