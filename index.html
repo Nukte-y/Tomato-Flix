@@ -20,7 +20,9 @@
     </div>
     <div class="container">
       <div class="row">
+       
         <div class="col-md-12 h1 pt-2 text-center header">
+          
           <img
             id="pause-button"
             class="button display-none"
@@ -51,10 +53,11 @@
           />
       </div>
       <div id="content" class="row mb-2">
-        <div id="history" class="display-none col-lg-2">
+        <div id="hist" class="hist col-lg-2 display-none">
           <h2>History</h2>
+          <div id="history" class="display-none col text-center"></div>
         </div>
-        <div id="film-Info" class="col text-center ">
+        <div id="film-Info" class="col-md-3 ">
           <!-- <img
             src="./assets/img/template_img.png"
             class="img-placeholder col-lg-3"
@@ -62,9 +65,12 @@
           /> -->
         </div>
         
-        <div id="reviews" class="col-lg-3 display-none">
-          </h2>Relevant Reviews</h2>
+        <div id="rev" class="rev display-none col-lg-3">
+          <h2>Relevant Reviews</h2>
+          <div id="reviews" class="col display-none">
+          </div>
         </div>
+      </div>
       </div>
       <div class="row mb-2">
         <div id="new-articles" class="col-md-12 text-center display-none">
@@ -80,7 +86,7 @@
         </div>
       </div>
       <div class="row">
-          <div id="article-Display" class="col-md-12"></div>
+          <div id="article-Display" class="col-md-6 offset-md-3 "></div>
       </div>
       <div class="footer"></div>
     </a>

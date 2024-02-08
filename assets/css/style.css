@@ -7,11 +7,6 @@
   display: none;
 }
 
-html,
-body {
-  background-color: #d8e6d0;
-}
-
 :root {
   --headingfont: "nexa-rust-sans-black-2", sans-serif;
   --headingweight: 900;
@@ -19,6 +14,14 @@ body {
   --secondheadingfont: "nexa-rust-sans-black-shad-2", sans-serif;
   --smallerheadings: "nexa-rust-script-shad-2", sans-serif;
   --smallerheadingsweight: 400;
+  --bg-color: black; /* Background color */
+  --text-color: white;
+}
+
+html,
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 h1 {
@@ -88,30 +91,35 @@ h2 {
 }
 .tomato:hover {
   transform: scale(1.2);
-  cursor:pointer; 
+  cursor: pointer;
 }
 
 #content {
- margin-top: 40px; 
+  margin-top: 40px;
 }
 
 /* Film Info */
 
 .img {
-  width: 300px;
+  min-width: 300px;
 }
 
 .key {
   font-family: var(--smallerheadings);
   font-weight: var(--smallerheadingsweight);
   font-style: var(--headingstyle);
-  text-align: center;
+
+  font-size: large;
 }
 
 .value {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  font-size: large;
+  font-size: medium;
+}
+
+h3 {
+  margin: 0px;
 }
 
 #pause-button {
@@ -122,30 +130,40 @@ h2 {
   max-height: 30px;
 }
 
+button {
+  background-color: rgb(37, 4, 13);
+  border-style: groove;
+  min-width: 150px;
+  border-radius: 20px;
+  padding: 5px;
+  color: #d8e6d0;
+  margin: 10px;
+}
+
 /* Articles */
 
 a {
   text-decoration: none;
-  font-size: 1.5em;
-  color: black;
+  font-size: 1em;
+  color: var(--text-color);
   font-family: Arial, Helvetica, sans-serif;
 }
 
+article,
 a:hover {
   color: aliceblue;
 }
 
 .article:hover {
-  background-color: aqua;
+  background-color: rgb(22, 92, 4);
 }
 
 .article {
-  border: 2px solid red;
+  border: 2px solid var(--text-color);
   text-align: center;
   border-radius: 20px;
   padding: 5px;
   margin: 20px 0px;
-  background: #d8e6d0;
 }
 
 /* Display News Articles BTN */
@@ -153,10 +171,11 @@ a:hover {
   font-size: 3em;
 }
 
-.form-control{          /*to style placeholder*/
+.form-control {
+  /*to style placeholder*/
   font-size: 38px;
-  font-weight: bolder; 
- }
+  font-weight: bolder;
+}
 
 @media only screen and (min-width: 480px) {
   h1 {
@@ -178,22 +197,28 @@ a:hover {
 }
 
 .ratingValue {
-  font-size: 18px
+  font-size: medium;
 }
 
 .ratingKey {
-  font-size: 28px;
+  font-size: large;
 }
 
 #detail_sub_ratings {
   border: 1px solid black;
   border-top: 2px dashed red;
   border-bottom: 2px dotted green;
-  border-left: solid red; 
+  border-left: solid red;
   border-right: solid green;
-  padding: 10px; 
+  padding: 10px;
 }
 
 .ratingsTitle {
   font-size: 100px;
+}
+#reviews {
+  height: 416px;
+  border: 1px solid black;
+  overflow: auto;
+  padding: 15px;
 }
