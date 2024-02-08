@@ -65,25 +65,23 @@ function soundControl(movieSound) {
   }
 }
 
-function articleParameters() {
-var title = document.getElementsByClassName("form-control")[0].value; //captures user input data
+$("#news-btn").on("click", function() {
+  var title = document.getElementsByClassName("form-control")[0].value; //captures user input data
+  if (!title) {
+    alert("Please enter a movie name.");
+    return;
+  }
+  displayArticle(title);
+});
+
 var apiURL = "https://gnews.io/api/v4/search?";
 var key = "&country=us&max=10&token=d06b56befd778f95afde57c26ebc9890";
-var searchString = title + " movie";
-var articleURL = apiURL + "q=" + searchString + key;
-return articleURL;
-}
-$("#news-btn").on("click", displayArticle);
-// $("#news-btn").on("click", displayArticle);
-// var title = document.getElementsByClassName("form-control")[0].value; //captures user input data
-// var apiURL = "https://gnews.io/api/v4/search?";
-// var key = "&country=us&max=10&token=d06b56befd778f95afde57c26ebc9890";
-// var searchString = title + " movie";
-// var articleURL = apiURL + "q=" + searchString + key;
 
-function displayArticle(event) {
+function displayArticle(title) {
+  var searchString = title + " movie";
+  var articleURL = apiURL + "q=" + searchString + key;
+
   //displays article titles
-  event.preventDefault();
   $("#article-Display").empty();
   fetch(articleParameters())
     .then(function (response) {
@@ -103,6 +101,7 @@ function displayArticle(event) {
       }
     });
 }
+
 function movieDetails(data) {
   movieDetailsContainer.empty();
 
@@ -151,12 +150,18 @@ function movieDetails(data) {
   }
 }
 
-var apikey = Keys.Key; // references the keys in the api keys in the keys.js file
+var apikey = Keys.Key; // references the keys in the keys.js file
 var apiHost = Keys.Host;
 
 function getReviews() {
   var movieName = document.getElementsByClassName("form-control")[0].value; //captures user input data
   console.log(movieName);
+// Error msg if no movie has been entered 
+  if (!movieName) {
+    alert("Please enter a movie name.");
+    return;
+  }
+  
 
   // // Get the existing movies from local storage
   var movies = JSON.parse(localStorage.getItem("movies")) || [];
@@ -206,6 +211,26 @@ function getReviews() {
           movieDetails(data);
         });
       getReviews(); // fetch the reviews for the clicked movie
+
+    //Fetch and display articles 
+    var articleURL = `https://newsapi.org/v2/everything?q=${movieName}&apiKey=${apikey}`;
+      fetch(articleURL)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          $("#article-Display").empty();
+          for (var i = 0; i < 5; i++) {
+            var articleUrl = data.articles[i].url;
+            var articleTitle = $("<div>")
+              .addClass("article")
+              .append(
+                $("<a>")
+                  .text(data.articles[i].title)
+                  .attr({ href: articleUrl, target: "_blank" })
+              );
+            $("#article-Display").append(articleTitle);
+          }})
     });
   });
 
