@@ -7,11 +7,6 @@
   display: none;
 }
 
-html,
-body {
-  background-color: #d8e6d0;
-}
-
 :root {
   --headingfont: "nexa-rust-sans-black-2", sans-serif;
   --headingweight: 900;
@@ -19,6 +14,14 @@ body {
   --secondheadingfont: "nexa-rust-sans-black-shad-2", sans-serif;
   --smallerheadings: "nexa-rust-script-shad-2", sans-serif;
   --smallerheadingsweight: 400;
+  --bg-color: black; /* Background color */
+  --text-color: white;
+}
+
+html,
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 h1 {
@@ -141,26 +144,26 @@ button {
 
 a {
   text-decoration: none;
-  font-size: 1.5em;
-  color: black;
+  font-size: 1em;
+  color: var(--text-color);
   font-family: Arial, Helvetica, sans-serif;
 }
 
+article,
 a:hover {
   color: aliceblue;
 }
 
 .article:hover {
-  background-color: aqua;
+  background-color: rgb(22, 92, 4);
 }
 
 .article {
-  border: 2px solid red;
+  border: 2px solid var(--text-color);
   text-align: center;
   border-radius: 20px;
   padding: 5px;
   margin: 20px 0px;
-  background: #d8e6d0;
 }
 
 /* Display News Articles BTN */
@@ -217,4 +220,5 @@ a:hover {
   height: 416px;
   border: 1px solid black;
   overflow: auto;
+  padding: 15px;
 }

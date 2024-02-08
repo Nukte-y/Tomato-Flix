@@ -83,7 +83,7 @@ function displayArticle(title) {
 
   //displays article titles
   $("#article-Display").empty();
-  fetch(articleURL)
+  fetch(articleParameters())
     .then(function (response) {
       return response.json();
     })
@@ -273,3 +273,23 @@ function getReviews() {
 
 // Add event listener to the search button
 document.getElementById("search-btn").addEventListener("click", getReviews);
+
+// // Get the root element
+// const root = document.documentElement;
+
+// // Get the toggle button
+// const toggle = document.getElementById("toggle"); // Get the user's preference from localStorage
+// const darkMode = localStorage.getItem("dark-mode"); // Check if the user has already chosen a theme
+// if (darkMode) {
+//   // If yes, apply it to the root element
+//   root.classList.add("dark-theme");
+// } // Add an event listener to the toggle button
+// toggle.addEventListener("click", () => {
+//   // Toggle the dark-theme class on the root element
+//   root.classList.toggle("dark-theme"); // Store or remove the user's preference in localStorage
+//   if (root.classList.contains("dark-theme")) {
+//     localStorage.setItem("dark-mode", true);
+//   } else {
+//     localStorage.removeItem("dark-mode");
+//   }
+// });
